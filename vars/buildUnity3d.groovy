@@ -3,7 +3,7 @@ import groovy.transform.Field
 
 @Field
 Map defaults = [
-    jobName: "Build Unity3D"
+    jobName: "Unity3D Build"
 ]
 
 def call(Map args = [:]) {
