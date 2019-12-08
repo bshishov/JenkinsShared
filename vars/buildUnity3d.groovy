@@ -14,6 +14,7 @@ def call(Map args = [:]) {
 
 	// This is an external parametrized build job that uses Unity3D 
 	// plugin to build the Unity3D project located in ${projectPath}
+	// For build args see https://docs.unity3d.com/Manual/CommandLineArguments.html
 	build job: args.jobName, parameters: [
 		string(name: "PROJECT_PATH", value: args.projectPath), 
 		string(name: "BUILD_ARGS", value: args.buildArgs)

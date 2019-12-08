@@ -11,10 +11,14 @@ def call(Map args = [:]) {
 	assert args.filename: "filename must be set"
 	assert args.nexusUrl: "nexusUrl must be set"
 	assert args.targetFilename: "targetFilename must be set"
+	assert args.credentialsId: "credentialsId must be set"	
 
 	args = defaults + args
 
-	command = "curl -v --upload-file \"${args.filename}\" \"${args.nexusUrl}/repository/${args.repository}/${args.targetFilename}\""
+	withCredentials([usernameColonPassword(credentialsId: args.credentialsId, variable: 'credentials')]) {
+		command = "curl -v -u ${credentials} --upload-file \"${args.filename}\" \"${args.nexusUrl}/repository/${args.repository}/${args.targetFilename}\""    
+	}
+	
 	if (isUnix()) {
 		sh command
 	} else {
