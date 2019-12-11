@@ -8,9 +8,9 @@ def call(Map args = [:]) {
 	echo "ZIP Archiving directory ${args.directory} to ${args.file}"
 	if (isUnix()) {
 		// TODO: Check
-		sh "\"${env.JAVA_HOME}/bin/jar\" -cMf \"${args.file}\" \"${args.directory}\"" 
+		sh "\"${env.JAVA_HOME}/bin/jar\" -cMf \"${args.file}\" -C \"${args.directory}\" ." 
 	}
 	else {
-		bat "\"%JAVA_HOME%/bin/jar\" -cMf \"${args.file}\" \"${args.directory}\""
+		bat "\"%JAVA_HOME%/bin/jar\" -cMf \"${args.file}\" -C \"${args.directory}\" ."
 	}
 }
